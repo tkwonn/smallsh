@@ -16,7 +16,7 @@ Such features include:
 
 ## Demo
 
-https://asciinema.org/a/5u1pndjgIQ0e1CbZdyldZPLrP
+[![asciicast](https://asciinema.org/a/5u1pndjgIQ0e1CbZdyldZPLrP.svg)](https://asciinema.org/a/5u1pndjgIQ0e1CbZdyldZPLrP)
 
 ## Example Output
 
