@@ -6,7 +6,7 @@ Such features include:
 - Command prompt for running commands
 - Support for blank lines and comments (lines starting with #)
 - Variable expansion for $$ (process ID)
-- Built-in commands: exit, cd, and status
+- Built-in commands: `exit`, `cd`, and `status`
 - External command execution via exec family of functions
 - Input and output redirection (<, >)
 - Foreground and background process execution
@@ -22,28 +22,37 @@ Such features include:
 
 ```bash
 ❯ ./smallsh
-: ls > output.txt
-: cat output.txt
-Makefile
-README.md
-output.txt
-smallsh
-smallsh.c
+: ls
+Makefile	README.md	smallsh		smallsh.c
+: ls > junk
 : status
 exit value 0
+: cat junk
+Makefile
+README.md
+junk
+smallsh
+smallsh.c
+: wc < junk > junk2
+: wc < junk
+       5       5      42
+: test -f badfile
+: status
+exit value 1
+: wc < badfile
+cannot open input file: No such file or directory
+:
+: # that was a blank command line, this is a comment line
 : sleep 3
 ^C
 terminated by signal 2
 : status
 exit value 0
 background pid 87740 is done: terminated by signal 2
-: ps
- PID TTY          TIME CMD
-12345 pts/0    00:00:00 sleep
-12300 pts/0    00:00:01 bash
-12301 pts/0    00:00:03 smallsh
-12346 pts/0    00:00:00 ps
 : # This is a comment
+: cd
+: pwd
+/User/username
 : echo Current PID is $$
 Current PID is 87617
 : nonexistent
