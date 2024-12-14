@@ -3,13 +3,13 @@
 A lightweight shell implementation in C that implements a subset of features of bash.  
 
 Such features include:
-- Command prompt for running commands
+- Command prompt (`:`) for running commands
 - Support for blank lines and comments (lines starting with `#`)
 - Variable expansion for `$$` (process ID)
-- Built-in commands: `exit`, `cd`, and `status`
-- External command execution via exec family of functions
+- Built-in commands: `cd`, `exit`, and `status` (`$?` in bash)
+- External command execution via exec family of functions (`execvp`)
 - Input and output redirection (`<`, `>`)
-- Foreground and background process execution
+- Foreground and background (`&`) process execution
 - Custom signal handling (`SIGINT` and `SIGTSTP`)
 - Maximum command length: 2048 characters
 - Maximum argument count: 512
