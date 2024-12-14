@@ -25,13 +25,13 @@ typedef struct {
 } command_t;
 
 /* Signal handlers should use async-signal-safe functions */
-void handleSIGINT(int signo){
+void handleSIGINT(const int signo){
     (void) signo;
     const char *message = "\nterminated by signal 2\n";
     write(STDOUT_FILENO, message, strlen(message));
 }
 
-void handleSIGTSTP(int signo) {
+void handleSIGTSTP(const int signo) {
     (void) signo;
     const char *message;
     if (backgroundAllowed) {
