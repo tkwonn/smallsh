@@ -1,8 +1,8 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -Wpedantic -Werror -std=c99
+CC := gcc
+CFLAGS := -Wall -Wextra -Wpedantic -Werror -std=c99
 
-SRCS = smallsh.c
-TARGET = smallsh
+SRCS := smallsh.c
+TARGET := smallsh
 
 # Default target
 all: $(TARGET)
