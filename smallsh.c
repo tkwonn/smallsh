@@ -16,13 +16,13 @@
 
 bool backgroundAllowed = true;
 
-struct command {
+typedef struct {
     char *argv[MAX_ARG_LENGTH];
     int argc;
     bool is_background;
     char input_file[PATH_MAX];
     char output_file[PATH_MAX];
-};
+} command_t;
 
 /* Signal handlers should use async-signal-safe functions */
 void handleSIGINT(int signo){
@@ -44,10 +44,10 @@ void handleSIGTSTP(int signo) {
     write(STDOUT_FILENO, message, strlen(message));
 }
 
-void getInput(struct command *cmd);
-void execCmd(struct command *cmd, int *exitStatus);
+void getInput(command_t *cmd);
+void execCmd(command_t *cmd, int *exitStatus);
 void printExitStatus(int *exitStatus);
-void cleanupCmd(struct command *cmd);
+void cleanupCmd(command_t *cmd);
 
 /* ---------------------- Main function ---------------------------- */
 /*	main() gets the input, checks for blanks or comments, processes
@@ -56,7 +56,7 @@ void cleanupCmd(struct command *cmd);
  * ----------------------------------------------------------------- */
 
 int main(void) {
-    struct command cmd;
+    command_t cmd;
     int exitStatus = 0;
     bool exitFlag = false;
 
@@ -121,12 +121,12 @@ int main(void) {
     return EXIT_SUCCESS;
 }
 
-void getInput(struct command *cmd) {
+void getInput(command_t *cmd) {
     char input[MAX_CMD_LENGTH];
     char *token;
 
     /* Initialize command struct with default values (0 or NULL) */
-    memset(cmd, 0, sizeof(struct command));
+    memset(cmd, 0, sizeof(command_t));
 
     printf(": ");
     fflush(stdout);
@@ -172,7 +172,7 @@ void getInput(struct command *cmd) {
     cmd->argv[cmd->argc] = NULL;  /* execvp requires NULL terminated array */
 }
 
-void execCmd(struct command *cmd, int *exitStatus) {
+void execCmd(command_t *cmd, int *exitStatus) {
     pid_t childPid = fork();
     struct sigaction sa = {0};
 
@@ -281,7 +281,7 @@ void printExitStatus(int *exitStatus) {
     }
 }
 
-void cleanupCmd(struct command *cmd) {
+void cleanupCmd(command_t *cmd) {
     /* Free memory allocated for each argument */
     for (int i = 0; i < cmd->argc; i++) {
         if (cmd->argv[i]) {
