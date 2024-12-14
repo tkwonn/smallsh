@@ -4,13 +4,13 @@ A lightweight shell implementation in C that implements a subset of features of 
 
 Such features include:
 - Command prompt for running commands
-- Support for blank lines and comments (lines starting with #)
-- Variable expansion for $$ (process ID)
+- Support for blank lines and comments (lines starting with `#`)
+- Variable expansion for `$$` (process ID)
 - Built-in commands: `exit`, `cd`, and `status`
 - External command execution via exec family of functions
-- Input and output redirection (<, >)
+- Input and output redirection (`<`, `>`)
 - Foreground and background process execution
-- Custom signal handling (SIGINT and SIGTSTP)
+- Custom signal handling (`SIGINT` and `SIGTSTP`)
 - Maximum command length: 2048 characters
 - Maximum argument count: 512
 
@@ -49,7 +49,6 @@ terminated by signal 2
 : status
 exit value 0
 background pid 87740 is done: terminated by signal 2
-: # This is a comment
 : cd
 : pwd
 /User/username
